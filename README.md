@@ -15,16 +15,17 @@ This is a URL Shortening Service implemented in Python Django using SQL (MySQL).
 .
 ├── manage.py
 ├── requirements.txt
-├── shortener/
+├── url_shortener/
 │   ├── __init__.py
 │   ├── settings.py
 │   ├── urls.py
 │   └── wsgi.py
-├── api/
+├── shortener/
 │   ├── __init__.py
 │   ├── models.py
 │   ├── views.py
 │   ├── serializers.py
+│   ├── urls.py
 │   └── tests.py
 └── README.md
 ```
@@ -60,8 +61,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'url_shortener',
-        'USER': 'muqeetqazi',
-        'PASSWORD': 'Qazi@12',
+        'USER': 'root',
+        'PASSWORD': 'Qazi@12321',
         'HOST': 'localhost',
         'PORT': '3306',
     }
@@ -85,31 +86,32 @@ python manage.py runserver
 ```
 POST /api/shorten/
 {
-    "long_url": "https://example.com/very/long/url"
+//will later
+    
 }
 ```
 
 ### Get Original URL
 ```
-GET /api/url/{short_code}/
+//will later
 ```
 
 ### Update Short URL
 ```
 PUT /api/url/{short_code}/
 {
-    "long_url": "https://new-example.com/updated/url"
+  //will later
 }
 ```
 
 ### Delete Short URL
 ```
-DELETE /api/url/{short_code}/
+//will later
 ```
 
 ### Get URL Statistics
 ```
-GET /api/stats/{short_code}/
+//will later
 ```
 
 ## Running Tests
