@@ -1,9 +1,9 @@
-import validators # type: ignore
-import requests # type: ignore
+import validators 
+import requests 
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404,redirect
 from .models import ShortURL
 from .serializers import ShortURLSerialize
 import random
@@ -60,7 +60,13 @@ class ShortenURL(APIView):
         # Return the response
         serializer = ShortURLSerialize(short_url)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
-
+class RedirectToOriginalURL(APIView):
+    def get(self, request, short_code):
+        """Redirect to the original URL using the short code."""
+        short_url = get_object_or_404(ShortURL, short_code=short_code)
+        short_url.access_count += 1  # Increment access count
+        short_url.save()
+        return redirect(short_url.url)
 class RetrieveURL(APIView):
     def get(self, request, short_code):
         """Retrieve the original URL using the short code."""
