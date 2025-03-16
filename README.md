@@ -100,14 +100,23 @@ python manage.py runserver
    - **Response**:
      ```json
      {
-       "id": 4,
-       "url": "https://www.postman.com/downloads/",
-       "short_code": "MJxe7s",
-       "created_at": "2025-03-16T11:48:13.639465Z",
-       "updated_at": "2025-03-16T11:48:13.639465Z",
+       "id": 17,
+       "url": "https://tankionline.com/en/",
+       "short_code": "QhnViY",
+       "created_at": "2025-03-16T15:11:08.732727Z",
+       "updated_at": "2025-03-16T15:11:08.732727Z",
        "access_count": 0
      }
      ```
+
+
+
+<img width="889" alt="image" src="https://github.com/user-attachments/assets/4f960faa-2467-4768-b22a-73f2ecf4b2fb" />
+
+
+
+
+
 
 2. **Retrieve Original URL**  
    - **Method**: GET  
