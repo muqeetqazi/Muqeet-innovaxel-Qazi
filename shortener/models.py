@@ -8,4 +8,4 @@ class ShortURL(models.Model):
     access_count = models.PositiveIntegerField(default=0)
 
     def __str__(self):
-        return f"{self.short_code} -> {self.url}"
+        return f"{self.short_code} -> {self.url}" 
