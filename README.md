@@ -23,6 +23,8 @@ This is a URL Shortening Service implemented in Python Django using SQL (MySQL).
 ├── shortener/
 │   ├── __init__.py
 │   ├── models.py
+│   ├── templates
+│   │    ├── dashboard.html
 │   ├── views.py
 │   ├── serializers.py
 │   ├── urls.py
@@ -94,7 +96,7 @@ python manage.py runserver
    - **Request Body**:
      ```json
      {
-       "url": "https://www.postman.com/downloads/"
+       "url": "https://tankionline.com/en/"
      }
      ```
    - **Response**:
@@ -120,22 +122,34 @@ python manage.py runserver
 
 2. **Retrieve Original URL**  
    - **Method**: GET  
-   - **URL**: `/api/shorten/MJxe7s/`  
+   - **URL**: `/api/shorten/<short_code>/`  
    - **Response**:
      ```json
-     {
-       "id": 4,
-       "url": "https://www.postman.com/downloads/",
-       "short_code": "MJxe7s",
-       "created_at": "2025-03-16T11:48:13.639465Z",
-       "updated_at": "2025-03-16T11:48:13.639465Z",
+    {
+       "id": 17,
+       "url": "https://tankionline.com/en/",
+       "short_code": "QhnViY",
+       "created_at": "2025-03-16T15:11:08.732727Z",
+       "updated_at": "2025-03-16T15:11:08.732727Z",
        "access_count": 0
-     }
+    }
      ```
+
+
+     
+<img width="959" alt="image" src="https://github.com/user-attachments/assets/d8b2d683-fee8-49e3-8122-a322759b776a" />
+
+
+
+
+
+
+
+
 
 3. **Update Short URL**  
    - **Method**: PUT  
-   - **URL**: `/api/shorten/MJxe7s/update/`  
+   - **URL**: `/api/shorten/<short_code>/update/`  
    - **Request Body**:
      ```json
      {
@@ -144,35 +158,64 @@ python manage.py runserver
      ```
    - **Response**:
      ```json
-     {
-       "id": 4,
-       "url": "https://www.updated-url.com/",
-       "short_code": "MJxe7s",
-       "created_at": "2025-03-16T11:48:13.639465Z",
-       "updated_at": "2025-03-16T12:00:00.000000Z",
-       "access_count": 0
-     }
+    {
+        "id": 17,
+        "url": "https://new-updated-url.com",
+        "short_code": "QhnViY",
+        "created_at": "2025-03-16T15:11:08.732727Z",
+        "updated_at": "2025-03-16T15:21:43.728871Z",
+        "access_count": 2
+    }
      ```
+
+
+     
+<img width="959" alt="image" src="https://github.com/user-attachments/assets/2b89f46c-dee3-425f-be70-d122c6a3cb1e" />
+
+
+
+
+
+
+
+
 
 4. **Delete Short URL**  
    - **Method**: DELETE  
-   - **URL**: `/api/shorten/MJxe7s/delete/`  
+   - **URL**: `/api/shorten/<short_code>/delete/`  
    - **Response**: `204 No Content`
+
+
+
+
+
+
+<img width="959" alt="image" src="https://github.com/user-attachments/assets/c20704de-aaf8-4ea2-8123-60eabf0b7082" />
+
+
+
+
+
 
 5. **Get URL Statistics**  
    - **Method**: GET  
    - **URL**: `/api/shorten/<short_code>/stats/`  
    - **Response**:
      ```json
-     {
-       "id": 4,
-       "url": "https://www.postman.com/downloads/",
-       "short_code": "MJxe7s",
-       "created_at": "2025-03-16T11:48:13.639465Z",
-       "updated_at": "2025-03-16T11:48:13.639465Z",
-       "access_count": 10
-     }
+    {
+        "id": 17,
+        "url": "https://new-updated-url.com",
+        "short_code": "QhnViY",
+        "created_at": "2025-03-16T15:11:08.732727Z",
+        "updated_at": "2025-03-16T15:21:43.728871Z",
+        "access_count": 2
+    }
      ```
+
+
+
+
+    <img width="959" alt="image" src="https://github.com/user-attachments/assets/6ab7b87b-4495-45d4-a657-307fc12dbcce" />
 
 6. **Redirect to Original URL**  
    - **Method**: GET  
