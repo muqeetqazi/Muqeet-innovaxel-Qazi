@@ -79,6 +79,12 @@ python manage.py migrate
 ```bash
 python manage.py runserver
 ```
+### Home Page
+- **URL**: `http://127.0.0.1:8000/`
+- **Features**:
+  - List of all URLs with options.
+  - Replace <short_code> with actual generated short_code
+    
 
 ## API Endpoints
 
