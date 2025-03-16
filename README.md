@@ -80,39 +80,81 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-## API Endpoints
+API Endpoints
+1. Create Short URL
+Method: POST
 
-### Create Short URL
-```
-POST /api/shorten/
+URL: /api/shorten/
+
+Request Body:
+
 {
-//will later
-    
+  "url": "https://www.postman.com/downloads/"
 }
-```
-
-### Get Original URL
-```
-//will later
-```
-
-### Update Short URL
-```
-PUT /api/url/{short_code}/
+Response:
 {
-  //will later
+  "id": 4,
+  "url": "https://www.postman.com/downloads/",
+  "short_code": "MJxe7s",
+  "created_at": "2025-03-16T11:48:13.639465Z",
+  "updated_at": "2025-03-16T11:48:13.639465Z",
+  "access_count": 0
 }
-```
+2. Retrieve Original URL
+Method: GET
 
-### Delete Short URL
-```
-//will later
-```
+URL: /api/shorten/MJxe7s/
 
-### Get URL Statistics
-```
-//will later
-```
+Response:
+
+{
+  "id": 4,
+  "url": "https://www.postman.com/downloads/",
+  "short_code": "MJxe7s",
+  "created_at": "2025-03-16T11:48:13.639465Z",
+  "updated_at": "2025-03-16T11:48:13.639465Z",
+  "access_count": 0
+}
+3. Update Short URL
+Method: PUT
+
+URL: /api/shorten/MJxe7s/update/
+
+Request Body:
+{
+  "url": "https://www.updated-url.com/"
+}
+Response:
+{
+  "id": 4,
+  "url": "https://www.updated-url.com/",
+  "short_code": "MJxe7s",
+  "created_at": "2025-03-16T11:48:13.639465Z",
+  "updated_at": "2025-03-16T12:00:00.000000Z",
+  "access_count": 0
+}
+4. Delete Short URL
+Method: DELETE
+
+URL: /api/shorten/MJxe7s/delete/
+
+Response: 204 No Content
+<img width="632" alt="image" src="https://github.com/user-attachments/assets/3aa20f62-e8ce-44d0-90db-28ce29763737" />
+
+5. Get URL Statistics
+Method: GET
+
+URL: /api/shorten/<short_code>/stats/
+
+Response:
+{
+  "id": 4,
+  "url": "https://www.postman.com/downloads/",
+  "short_code": "MJxe7s",
+  "created_at": "2025-03-16T11:48:13.639465Z",
+  "updated_at": "2025-03-16T11:48:13.639465Z",
+  "access_count": 10
+}
 
 ## Running Tests
 ```bash
