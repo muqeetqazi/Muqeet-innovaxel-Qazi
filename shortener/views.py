@@ -13,7 +13,7 @@ def generate_short_code():
 class ShortenURL(APIView):
     def post(self, request):
         serializer = ShortURLSerialize(data=request.data)
-        if serializer.is_valid():
+        if serializer.is_valid:
             short_code = generate_short_code()
             while ShortURL.objects.filter(short_code=short_code).exists():
                 short_code = generate_short_code()
