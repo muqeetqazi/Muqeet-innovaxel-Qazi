@@ -155,6 +155,13 @@ Response:
   "updated_at": "2025-03-16T11:48:13.639465Z",
   "access_count": 10
 }
+6. Redirect to Original URL
+- **Method**: `GET`
+- **URL**: `/<short_code>/`
+- **Behavior**: Redirects to the original URL associated with the short code.
+- **Example**:
+  - Visit `http://127.0.0.1:8000/6ezVSb/` to be redirected to `https://www.postman.com/downloads/`.
+
 
 ## Running Tests
 ```bash
