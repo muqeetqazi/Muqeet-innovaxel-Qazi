@@ -16,7 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from shortener.views import api_dashboard
 
 urlpatterns = [
+
+   path("",api_dashboard,name="api-dashboard"),
    path('api/', include('shortener.urls')),
+   
 ]

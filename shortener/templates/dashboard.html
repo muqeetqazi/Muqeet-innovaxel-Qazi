@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Dashboard</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .note {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #ffebcc;
+            border-left: 5px solid #ffa500;
+            color: #555;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>API Endpoints</h1>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Method</th>
+                <th>URL</th>
+            </tr>
+            {% for endpoint in endpoints %}
+            <tr>
+                <td>{{ endpoint.name }}</td>
+                <td>{{ endpoint.method }}</td>
+                <td><a href="{{ endpoint.url }}">{{ endpoint.url }}</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        <div class="note">
+            <strong>Note:</strong> Please replace <strong>short_code</strong> in the URL for "Retrieve URL", "Update URL", "Delete URL", "URL Stats", and "RedirectToOriginalURL" with the actual short code you received in the response of "Shorten URL".
+        </div>
+    </div>
+</body>
+</html>

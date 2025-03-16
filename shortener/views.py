@@ -3,12 +3,21 @@ import requests
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from django.shortcuts import get_object_or_404,redirect
+from django.shortcuts import get_object_or_404,redirect,render
 from .models import ShortURL
 from .serializers import ShortURLSerialize
 import random
 import string
-
+def api_dashboard(request):
+    endpoints = [
+        {"name": "Shorten URL", "method": "POST", "url": "/api/shorten/"},
+        {"name": "Retrieve URL", "method": "GET", "url": "/api/shorten/<short_code>/"},
+        {"name": "Update URL", "method": "PUT", "url": "/api/shorten/<short_code>/update/"},
+        {"name": "Delete URL", "method": "DELETE", "url": "/api/shorten/<short_code>/"},
+        {"name": "URL Stats", "method": "GET", "url": "/api/shorten/<short_code>/stats/"},
+        {"name": "Redirect to Original URL", "method": "GET", "url": "/api/<short_code>/"},
+    ]
+    return render(request, "dashboard.html", {"endpoints": endpoints})
 def generate_short_code():
     """Generate a random 6-character short code."""
     return ''.join(random.choices(string.ascii_letters + string.digits, k=6))
@@ -60,18 +69,20 @@ class ShortenURL(APIView):
         # Return the response
         serializer = ShortURLSerialize(short_url)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+    
 class RedirectToOriginalURL(APIView):
     def get(self, request, short_code):
         """Redirect to the original URL using the short code."""
         short_url = get_object_or_404(ShortURL, short_code=short_code)
-        short_url.access_count += 1  # Increment access count
+        short_url.access_count += 1  
         short_url.save()
         return redirect(short_url.url)
+    
 class RetrieveURL(APIView):
     def get(self, request, short_code):
         """Retrieve the original URL using the short code."""
         short_url = get_object_or_404(ShortURL, short_code=short_code)
-        short_url.access_count += 1  # Increment access count
+        short_url.access_count += 1  
         short_url.save()
         serializer = ShortURLSerialize(short_url)
         return Response(serializer.data)

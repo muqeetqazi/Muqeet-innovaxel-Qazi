@@ -6,5 +6,5 @@ class ShortURLSerialize(serializers.ModelSerializer):
         model = ShortURL
         fields = ['id', 'url', 'short_code', 'created_at', 'updated_at', 'access_count']
         extra_kwargs = {
-            'short_code': {'required': False},  # Make short_code optional
+            'short_code': {'required': False},
         }
