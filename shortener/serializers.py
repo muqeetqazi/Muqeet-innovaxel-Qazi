@@ -3,5 +3,8 @@ from .models import ShortURL
 
 class ShortURLSerialize(serializers.ModelSerializer):
     class Meta:
-        model=ShortURL
-        field=['id','url','short_code','created_at','update_at','access_count']
+        model = ShortURL
+        fields = ['id', 'url', 'short_code', 'created_at', 'updated_at', 'access_count']
+        extra_kwargs = {
+            'short_code': {'required': False},  # Make short_code optional
+        }
