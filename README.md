@@ -80,88 +80,91 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-API Endpoints
-1. Create Short URL
-Method: POST
+## API Endpoints
 
-URL: /api/shorten/
+1. **Create Short URL**  
+   - **Method**: POST  
+   - **URL**: `/api/shorten/`  
+   - **Request Body**:
+     ```json
+     {
+       "url": "https://www.postman.com/downloads/"
+     }
+     ```
+   - **Response**:
+     ```json
+     {
+       "id": 4,
+       "url": "https://www.postman.com/downloads/",
+       "short_code": "MJxe7s",
+       "created_at": "2025-03-16T11:48:13.639465Z",
+       "updated_at": "2025-03-16T11:48:13.639465Z",
+       "access_count": 0
+     }
+     ```
 
-Request Body:
+2. **Retrieve Original URL**  
+   - **Method**: GET  
+   - **URL**: `/api/shorten/MJxe7s/`  
+   - **Response**:
+     ```json
+     {
+       "id": 4,
+       "url": "https://www.postman.com/downloads/",
+       "short_code": "MJxe7s",
+       "created_at": "2025-03-16T11:48:13.639465Z",
+       "updated_at": "2025-03-16T11:48:13.639465Z",
+       "access_count": 0
+     }
+     ```
 
-{
-  "url": "https://www.postman.com/downloads/"
-}
-Response:
-{
-  "id": 4,
-  "url": "https://www.postman.com/downloads/",
-  "short_code": "MJxe7s",
-  "created_at": "2025-03-16T11:48:13.639465Z",
-  "updated_at": "2025-03-16T11:48:13.639465Z",
-  "access_count": 0
-}
-2. Retrieve Original URL
-Method: GET
+3. **Update Short URL**  
+   - **Method**: PUT  
+   - **URL**: `/api/shorten/MJxe7s/update/`  
+   - **Request Body**:
+     ```json
+     {
+       "url": "https://www.updated-url.com/"
+     }
+     ```
+   - **Response**:
+     ```json
+     {
+       "id": 4,
+       "url": "https://www.updated-url.com/",
+       "short_code": "MJxe7s",
+       "created_at": "2025-03-16T11:48:13.639465Z",
+       "updated_at": "2025-03-16T12:00:00.000000Z",
+       "access_count": 0
+     }
+     ```
 
-URL: /api/shorten/MJxe7s/
+4. **Delete Short URL**  
+   - **Method**: DELETE  
+   - **URL**: `/api/shorten/MJxe7s/delete/`  
+   - **Response**: `204 No Content`
 
-Response:
+5. **Get URL Statistics**  
+   - **Method**: GET  
+   - **URL**: `/api/shorten/<short_code>/stats/`  
+   - **Response**:
+     ```json
+     {
+       "id": 4,
+       "url": "https://www.postman.com/downloads/",
+       "short_code": "MJxe7s",
+       "created_at": "2025-03-16T11:48:13.639465Z",
+       "updated_at": "2025-03-16T11:48:13.639465Z",
+       "access_count": 10
+     }
+     ```
 
-{
-  "id": 4,
-  "url": "https://www.postman.com/downloads/",
-  "short_code": "MJxe7s",
-  "created_at": "2025-03-16T11:48:13.639465Z",
-  "updated_at": "2025-03-16T11:48:13.639465Z",
-  "access_count": 0
-}
-3. Update Short URL
-Method: PUT
-
-URL: /api/shorten/MJxe7s/update/
-
-Request Body:
-{
-  "url": "https://www.updated-url.com/"
-}
-Response:
-{
-  "id": 4,
-  "url": "https://www.updated-url.com/",
-  "short_code": "MJxe7s",
-  "created_at": "2025-03-16T11:48:13.639465Z",
-  "updated_at": "2025-03-16T12:00:00.000000Z",
-  "access_count": 0
-}
-4. Delete Short URL
-Method: DELETE
-
-URL: /api/shorten/MJxe7s/delete/
-
-Response: 204 No Content
-<img width="632" alt="image" src="https://github.com/user-attachments/assets/3aa20f62-e8ce-44d0-90db-28ce29763737" />
-
-5. Get URL Statistics
-Method: GET
-
-URL: /api/shorten/<short_code>/stats/
-
-Response:
-{
-  "id": 4,
-  "url": "https://www.postman.com/downloads/",
-  "short_code": "MJxe7s",
-  "created_at": "2025-03-16T11:48:13.639465Z",
-  "updated_at": "2025-03-16T11:48:13.639465Z",
-  "access_count": 10
-}
-6. Redirect to Original URL
-- **Method**: `GET`
-- **URL**: `/<short_code>/`
-- **Behavior**: Redirects to the original URL associated with the short code.
-- **Example**:
-  - Visit `http://127.0.0.1:8000/6ezVSb/` to be redirected to `https://www.postman.com/downloads/`.
-
+6. **Redirect to Original URL**  
+   - **Method**: GET  
+   - **URL**: `/<short_code>/`  
+   - **Behavior**: Redirects to the original URL associated with the short code.  
+   - **Example**:  
+     - Visit `http://127.0.0.1:8000/6ezVSb/` to be redirected to `https://www.postman.com/downloads/`.
 
 ## Running Tests
 ```bash
